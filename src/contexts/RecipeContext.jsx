@@ -10,6 +10,7 @@ const RecipeProvider = ({ children }) => {
     filteredRecipies: recipies,
     searchValue: "",
     filterType: "name",
+    addModalStatus: false,
   };
 
   const [state, dispatch] = useReducer(recipeReducer, initialState);
@@ -65,8 +66,10 @@ const RecipeProvider = ({ children }) => {
     const updatedRecipies = state.filteredRecipies.filter(
       (recipe) => recipe.id !== recipeId
     );
-    dispatch({ type: "UPDATE_FILTERED_RECIPIES", payload: updatedRecipies });
+    dispatch({ type: "UPDATE_RECIPIES", payload: updatedRecipies });
   };
+
+  const onAddRecipeSubmit = () => {};
 
   const valueProp = {
     state,
@@ -74,6 +77,7 @@ const RecipeProvider = ({ children }) => {
     handleFilterChange,
     handleSearch,
     handleDelete,
+    onAddRecipeSubmit,
   };
 
   return (

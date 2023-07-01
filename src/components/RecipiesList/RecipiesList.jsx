@@ -10,6 +10,7 @@ import {
   faTrash,
   faEdit,
 } from "@fortawesome/free-solid-svg-icons";
+import AddRecipeModal from "../Modal/AddRecipeModal";
 
 const RecipiesList = () => {
   const { state, dispatch, handleDelete } = useContext(RecipeContext);
@@ -24,13 +25,18 @@ const RecipiesList = () => {
           <h3>{recipe.name}</h3>
           Cuisine Type: <p>{recipe.cuisine}</p>
           <p>
-            Ingredients: <Link>See More</Link>
+            Ingredients:{" "}
+            <Link to={`recipe-details/${recipe.id}`}>See More</Link>
           </p>
           <p>
             {" "}
-            Instructions: <Link>See More</Link>
+            Instructions:{" "}
+            <Link to={`recipe-details/${recipe.id}`}>See More</Link>
           </p>
-          <FontAwesomeIcon icon={faTrash} onClick={handleDelete(recipe.id)} />
+          <FontAwesomeIcon
+            icon={faTrash}
+            onClick={() => handleDelete(recipe.id)}
+          />
         </div>
       ))}
       <div>
@@ -41,6 +47,7 @@ const RecipiesList = () => {
         />
         <p>Add recipe</p>
       </div>
+      {state.addModalStatus ? <AddRecipeModal /> : null}
     </div>
   );
 };

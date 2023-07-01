@@ -1,7 +1,12 @@
 export const recipeReducer = (state, action) => {
+  console.log("in reducer");
   switch (action.type) {
-    case "UPDATE_FILTERED_RECIPIES":
-      return { ...state, filteredRecipies: action.payload };
+    case "UPDATE_RECIPIES":
+      return {
+        ...state,
+        filteredRecipies: action.payload,
+        allRecipies: action.payload,
+      };
 
     case "UPDATE_FILTER_TYPE":
       return { ...state, filterType: action.payload };
