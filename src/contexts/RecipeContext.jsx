@@ -1,3 +1,4 @@
+import { v4 as uuid } from "uuid";
 import { createContext, useReducer } from "react";
 import { recipeReducer } from "../reducers/RecipeReducer";
 import { recipies } from "../db/recipes";
@@ -69,7 +70,20 @@ const RecipeProvider = ({ children }) => {
     dispatch({ type: "UPDATE_RECIPIES", payload: updatedRecipies });
   };
 
-  const onAddRecipeSubmit = () => {};
+  const onAddRecipeSubmit = (e) => {
+    e.preventDefault();
+    const data = new FormData(e.target);
+    console.log(data.get("name"), " ---form data");
+    const newRecipe = {
+      id: uuid(),
+      name: data.get("name"),
+      image: data.get("image"),
+      cuisine: data.get("cuisine"),
+      ingredients: data.get("ingredients"),
+      instructions: data.get("instructions"),
+    };
+    dispatch({ type: "ADD_RECIPE", payload: newRecipe });
+  };
 
   const valueProp = {
     state,

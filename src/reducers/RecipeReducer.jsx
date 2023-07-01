@@ -8,6 +8,12 @@ export const recipeReducer = (state, action) => {
         allRecipies: action.payload,
       };
 
+    case "ADD_RECIPE":
+      return {
+        ...state,
+        allRecipies: [...state.allRecipies, action.payload],
+      };
+
     case "UPDATE_FILTER_TYPE":
       return { ...state, filterType: action.payload };
 

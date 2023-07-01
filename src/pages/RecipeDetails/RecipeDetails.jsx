@@ -9,7 +9,7 @@ const RecipeDetails = () => {
   console.log("recipe id-- ", recipeId);
 
   const foundRecipe = state.allRecipies.find(
-    (recipe) => recipe.id === Number(recipeId)
+    (recipe) => recipe.id.toString() === recipeId.toString()
   );
   const { image, name, ingredients, cuisine, instructions } = foundRecipe;
 
@@ -20,6 +20,7 @@ const RecipeDetails = () => {
       <p>{name}</p>
       <p>Cuisine Type: {cuisine}</p>
       <p>Ingredients: {ingredients}</p>
+      <p>Instructions: {instructions}</p>
     </div>
   );
 };
