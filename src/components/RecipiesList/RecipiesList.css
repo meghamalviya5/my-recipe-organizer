@@ -1,0 +1,16 @@
+.recipies {
+  display: flex;
+}
+
+.recipe-card {
+  margin: 1rem;
+  position: relative;
+}
+
+.add-icon {
+  height: 3rem;
+  width: 3rem;
+  align-self: center;
+  text-align: center;
+  padding: 5rem;
+}
