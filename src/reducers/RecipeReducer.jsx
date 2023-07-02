@@ -2,6 +2,7 @@ export const recipeReducer = (state, action) => {
   console.log("in reducer");
   switch (action.type) {
     case "UPDATE_RECIPIES":
+      // localStorage.setItem(state.allRecipies, action.payload);
       return {
         ...state,
         filteredRecipies: action.payload,
@@ -9,6 +10,10 @@ export const recipeReducer = (state, action) => {
       };
 
     case "ADD_RECIPE":
+      localStorage.setItem(
+        "allRecipies",
+        JSON.stringify([...state.allRecipies, action.payload])
+      );
       return {
         ...state,
         allRecipies: [...state.allRecipies, action.payload],

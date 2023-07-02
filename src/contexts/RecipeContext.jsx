@@ -1,5 +1,5 @@
 import { v4 as uuid } from "uuid";
-import { createContext, useReducer } from "react";
+import { createContext, useEffect, useReducer } from "react";
 import { recipeReducer } from "../reducers/RecipeReducer";
 import { recipies } from "../db/recipes";
 
@@ -18,29 +18,20 @@ const RecipeProvider = ({ children }) => {
 
   console.log("in context");
 
+  useEffect(() => {
+    const retainedRecipies = localStorage.getItem("allRecipies");
+    if (retainedRecipies) {
+      dispatch({
+        type: "UPDATE_RECIPIES",
+        payload: JSON.parse(retainedRecipies),
+      });
+    } else {
+      dispatch({ type: "UPDATE_RECIPIES", payload: recipies });
+    }
+  }, []);
   const handleFilterChange = (e) => {
     dispatch({ type: "UPDATE_FILTER_TYPE", payload: e.target.value });
   };
-
-  const handleSearch = (e) => {};
-  //   const handleSearch = (e) => {
-  //     dispatch({ type: "UPDATE_SEARCH_VALUE", payload: e.target.value });
-  //     let foundRecipies = [];
-  //     if (state.filterType === "name") {
-  //       foundRecipies = state.allRecipies.filter((recipe) =>
-  //         recipe.name.toLowerCase().includes(e.target.value.toLowerCase())
-  //       );
-  //     } else if (state.filterType === "ingredients") {
-  //       foundRecipies = state.allRecipies.filter((recipe) =>
-  //         recipe.ingredients.toLowerCase().includes(e.target.value.toLowerCase())
-  //       );
-  //     } else if (state.filterType === "cuisine") {
-  //       foundRecipies = state.allRecipies.filter((recipe) =>
-  //         recipe.cuisine.toLowerCase().includes(e.target.value.toLowerCase())
-  //       );
-  //     }
-  //     dispatch({ type: "UPDATE_FILTERED_RECIPIES", payload: foundRecipies });
-  //   };
 
   if (state.filterType) {
     let foundRecipies = [];
@@ -89,7 +80,6 @@ const RecipeProvider = ({ children }) => {
     state,
     dispatch,
     handleFilterChange,
-    handleSearch,
     handleDelete,
     onAddRecipeSubmit,
   };

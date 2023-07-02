@@ -6,7 +6,13 @@ const AddRecipe = () => {
 
   return (
     <div>
-      <form method="post" onSubmit={onAddRecipeSubmit}>
+      <form
+        method="post"
+        onSubmit={(e) => {
+          onAddRecipeSubmit(e);
+          dispatch({ type: "ADD_MODAL_STATUS", payload: false });
+        }}
+      >
         <div>Add Recipe</div>
         <div>
           <label htmlFor="name">Name: </label>

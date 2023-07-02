@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { RecipeContext } from "../../contexts/RecipeContext";
 
 const Search = () => {
-  const { state, dispatch, handleSearch } = useContext(RecipeContext);
+  const { state, dispatch } = useContext(RecipeContext);
   return (
     <div>
       <input
@@ -13,7 +13,6 @@ const Search = () => {
             type: "UPDATE_SEARCH_VALUE",
             payload: e.target.value,
           });
-          //   handleSearch(e);
         }}
         placeholder="Search the item you want"
       />
