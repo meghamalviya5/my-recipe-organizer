@@ -45,7 +45,7 @@ const RecipiesList = () => {
           className="add-icon"
           onClick={() => dispatch({ type: "ADD_MODAL_STATUS", payload: true })}
         />
-        <p>Add recipe</p>
+        {/* / <p>Add recipe</p> */}
       </div>
       {state.addModalStatus ? <AddRecipeModal /> : null}
     </div>

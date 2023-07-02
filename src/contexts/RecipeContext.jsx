@@ -42,6 +42,7 @@ const RecipeProvider = ({ children }) => {
     } else if (state.filterType === "ingredients") {
       foundRecipies = state.allRecipies.filter((recipe) =>
         recipe.ingredients
+          .toString()
           .toLowerCase()
           .includes(state.searchValue.toLowerCase())
       );
